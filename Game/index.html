@@ -1,0 +1,78 @@
+﻿<html>  
+<head>
+
+    <title>爆款三国</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="IE=11.00" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=0.5">
+    
+    <link rel="apple-touch-icon-precomposed" href="icon.png" />
+    <link rel="touch-icon-precomposed" href="icon.png" />
+
+    <style>
+        canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+
+
+
+    <script src="h5web.min.js"></script>
+
+    
+
+    <script>
+        var game;
+        function init() {
+            
+            //document.getElementById('root').height= window.innerHeight + 100;  //强制让内容超过  
+
+            //window.scrollTo(0, 1);
+
+            //document.getElementById('root').height=window.innerHeight;  //重置成新高度  
+
+            //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);  //如果不想让页面滑动，可以加上这段代码
+    
+            addEvents();
+            Engine.init(document.getElementById('P8_M60_chart_canvas1'));
+            Scene_data.user = 0;
+            game = new GameStart();
+            game.init();
+            UiStage.getInstance().init(document.getElementById('contentTxtCanvas'));
+            setInterval("update()", 1000 / 60);
+            resetSize();
+        }
+ 
+        function addEvents()
+        {
+           
+            UIManager.getInstance().regEvent(null);
+        }
+
+        function resetSize() {
+            Engine.resetSize();
+            UiStage.getInstance().resetSize();
+        }
+
+        function update() {
+            Engine.update();
+        }
+
+       
+
+    </script>
+</head>
+<body onload='init()' onresize="resetSize()" ontouchmove="event.preventDefault()" style="overflow-x: hidden; overflow-y: hidden">
+    <div id="root">
+        <canvas id="P8_M60_chart_canvas1" width="800" height="600" style="z-index:1"></canvas>
+        <canvas id="contentTxtCanvas" width="100" height="50" style="z-index:2"></canvas>
+    </div>
+
+
+</body>
+</html>
